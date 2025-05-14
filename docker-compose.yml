@@ -3,8 +3,8 @@ services:
     build:
       context: .
     container_name: fedegan-backend
-    command: gunicorn fedegan.wsgi:application --bind 0.0.0.0:8000
-    #command: python manage.py runserver 0.0.0.0:8000
+    #command: gunicorn fedegan.wsgi:application --bind 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     #command: tail -f /dev/null
     ports:
       - "8000:8000"

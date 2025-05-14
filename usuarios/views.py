@@ -8,10 +8,12 @@ from .serializers import UsuarioSerializer, RegistroSerializer
 
 User = get_user_model()
 
+
 class RegistroView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegistroSerializer
     permission_classes = [permissions.AllowAny]
+
 
 class PerfilView(generics.RetrieveAPIView):
     serializer_class = UsuarioSerializer
@@ -19,6 +21,7 @@ class PerfilView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -28,6 +31,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['rol'] = user.rol
         token['email'] = user.email
         return token
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer

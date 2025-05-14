@@ -1,13 +1,16 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
+from pydantic import Field
 
 class Secrets(BaseSettings):
-    DEBUG: bool = False
-    SECRET_KEY: str = "secret_key"
+    DEBUG: bool = Field(default=False)
+    SECRET_KEY: str = Field(default="secret_key")
 
-    DATABASE_USER: str = "postgres"
-    DATABASE_PASSWORD: str = "postgres"
-    DATABASE_HOST: str = "db"
-    DATABASE_PORT: str = "5432"
-    DATABASE_NAME: str = "fedegan-app"
+    DATABASE_USER: str = Field(default="postgres")
+    DATABASE_PASSWORD: str = Field(default="postgres")
+    DATABASE_HOST: str = Field(default="db")
+    DATABASE_PORT: str = Field(default="5432")
+    DATABASE_NAME: str = Field(default="fedegan-app")
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"

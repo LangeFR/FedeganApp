@@ -3,16 +3,26 @@ services:
     build:
       context: .
     container_name: fedegan-backend
+    command: gunicorn fedegan.wsgi:application --bind 0.0.0.0:8000
     #command: python manage.py runserver 0.0.0.0:8000
     #command: tail -f /dev/null
-    volumes:
-      - .:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
     env_file:
       - .env
+
+  nginx:
+    image: nginx:alpine
+    container_name: fedegan-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./staticfiles:/app/staticfiles
+    depends_on:
+      - backend
 
   db:
     image: postgres:16

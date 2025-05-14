@@ -10,4 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["gunicorn", "fedegan.wsgi"]
+RUN python manage.py collectstatic --noinput
+
+CMD ["gunicorn", "-b", "0.0.0.0:80", "fedegan.wsgi"]

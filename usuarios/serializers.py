@@ -26,7 +26,7 @@ class RegistroSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if data['password'] != data['password2']:
             raise serializers.ValidationError(
-                {"password": "Las contraseñas no coinciden."})
+                {"password": "Las SIRVIOcontraseñas no coinciden."})
         return data
 
     def create(self, validated_data):

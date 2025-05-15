@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Municipio
 
-# Register your models here.
+@admin.register(Municipio)
+class MunicipioAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'region')
+    list_filter = ('region',)
+    search_fields = ('nombre',)
+    ordering = ('nombre',)

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Brote(models.Model):
     ESPECIE_CHOICES = (
         ('bovino', 'Bovino'),

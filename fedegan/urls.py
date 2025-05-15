@@ -21,8 +21,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/brotes/', include('brotes.urls')),
     path('api/usuarios/', include('usuarios.urls')),
     path('api/vacunacion/', include('campanias.urls')),
+    path('api/animal/', include('animal.urls')),
+    path('api/municipio/', include('municipio.urls')),
+
 ]
 
 if settings.DEBUG:

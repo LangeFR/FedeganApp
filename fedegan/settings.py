@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'usuarios',
     'campanias',
     'brotes',
+    'animal',
+    'municipio',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,5 +1,7 @@
 from django.db import models
+from animal.models import Animal
 from usuarios.models import User
+
 
 class Campaña(models.Model):
     nombre = models.CharField(max_length=100)
@@ -10,20 +12,20 @@ class Campaña(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Vacunacion(models.Model):
     ESPECIE_CHOICES = (
         ('bovino', 'Bovino'),
         ('porcino', 'Porcino'),
     )
 
-    campaña = models.ForeignKey(Campaña, on_delete=models.CASCADE, related_name='vacunaciones')
-    vacunador = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'rol': 'vacunador'})
-    finca = models.CharField(max_length=100)
-    municipio = models.CharField(max_length=100)
-    región = models.CharField(max_length=100)
+    id_campaña = models.ForeignKey(
+        Campaña, on_delete=models.CASCADE, related_name='vacunaciones')
+    id_vacunador = models.ForeignKey(
+        User, on_delete=models.CASCADE, limit_choices_to={'rol': 'vacunador'})
+    id_animal = models.ForeignKey(
+        Animal, on_delete=models.CASCADE)
     fecha = models.DateField()
-    especie = models.CharField(max_length=10, choices=ESPECIE_CHOICES)
-    cantidad = models.PositiveIntegerField()
 
     def __str__(self):
         return f"{self.especie} - {self.finca} ({self.cantidad})"

@@ -18,7 +18,6 @@ class Vacunacion(models.Model):
         ('bovino', 'Bovino'),
         ('porcino', 'Porcino'),
     )
-
     id_campaña = models.ForeignKey(
         Campaña, on_delete=models.CASCADE, related_name='vacunaciones')
     id_vacunador = models.ForeignKey(
@@ -27,5 +26,4 @@ class Vacunacion(models.Model):
         Animal, on_delete=models.CASCADE)
     fecha = models.DateField()
 
-    def __str__(self):
-        return f"{self.especie} - {self.finca} ({self.cantidad})"
+    

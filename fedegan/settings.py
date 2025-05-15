@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta
+
 from .secrets import Secrets
 
 secrets = Secrets()
@@ -123,6 +125,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+SIMPLE_JWT = {
+    # Aquí defines cuánto dura el token
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+    # Opcional: cuánto tiempo puedes usar el refresh
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 
 # Internationalization
